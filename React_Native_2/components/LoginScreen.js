@@ -150,7 +150,6 @@ useEffect(() => {
         marginBottom: 33,
       },
       textRegister: {
-        fontWeight: 500,
         fontSize: 30,
         textAlign: 'center',
         fontFamily: "Roboto-Medium",

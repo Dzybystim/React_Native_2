@@ -191,7 +191,6 @@ const submitForm = () => {
       paddingRight: 16,
     },
     textRegister: {
-      fontWeight: 500,
       fontSize: 30,
       textAlign: 'center',
       fontFamily: "Roboto-Medium",
