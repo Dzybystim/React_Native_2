@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useCallback, useEffect  } from 'react';
 import { 
     StyleSheet, 
@@ -37,7 +38,7 @@ useEffect(() => {
   Dimensions.addEventListener('change', onChange);
 
   return () => {
-    Dimensions.removeEventListener('change', onChange)
+    Dimensions.remove('change', onChange)
   };
 
 }, [])
@@ -73,6 +74,7 @@ useEffect(() => {
   }
 
     return (
+    <React.StrictMode>
     <TouchableWithoutFeedback onPress={() => keyboardDismiss()}>
       <View style={styles.container} onLayout={onLayoutRootView}>
         <ImageBackground 
@@ -121,6 +123,7 @@ useEffect(() => {
         </ImageBackground>
       </View>
       </TouchableWithoutFeedback>
+      </React.StrictMode>
     );
   }
   
