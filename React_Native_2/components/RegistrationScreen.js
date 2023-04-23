@@ -25,11 +25,12 @@ import {
 
  
 
-export default function RegistrationScreen() {
+export default function RegistrationScreen({navigation, setAuth, auth}) {
 
 const [keyboardView, setKeyboardView] = useState(false)
 const [userInfo, setUserInfo] = useState(initialState)
 const [dimen, setDimen] = useState(Dimensions.get('window').width-16*2)
+
 
 useEffect(() => {
   const onChange = () => {
@@ -71,6 +72,7 @@ const submitForm = () => {
   setKeyboardView(false);
   Keyboard.dismiss();
   console.log(userInfo);
+  setAuth(true)
   setUserInfo(initialState);
 }
 
@@ -126,9 +128,10 @@ const submitForm = () => {
         </View>
         {keyboardView=== false ?
         <>
-              <View >
-                <Text style={styles.bottomText}>Уже есть аккаунт? Войти</Text>
-              </View>
+              <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+                <Text style={styles.bottomText} >
+                  Уже есть аккаунт? Войти</Text>
+              </TouchableOpacity>
         </>
         :
         null

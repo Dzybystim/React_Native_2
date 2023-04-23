@@ -23,7 +23,7 @@ import {
     }
 
 
-export default function LoginScreen() {
+export default function LoginScreen({navigation, setAuth, auth}) {
 
 const [keyboardView, setKeyboardView] = useState(false)
 const [userInfo, setUserInfo] = useState(initialState)
@@ -38,7 +38,7 @@ useEffect(() => {
   Dimensions.addEventListener('change', onChange);
 
   return () => {
-    Dimensions.remove('change', onChange)
+    Dimensions.removeEventListener('change', onChange)
   };
 
 }, [])
@@ -70,11 +70,11 @@ useEffect(() => {
     setKeyboardView(false);
     Keyboard.dismiss();
     console.log(userInfo);
+    setAuth(true)
     setUserInfo(initialState);
   }
 
     return (
-    <React.StrictMode>
     <TouchableWithoutFeedback onPress={() => keyboardDismiss()}>
       <View style={styles.container} onLayout={onLayoutRootView}>
         <ImageBackground 
@@ -110,9 +110,10 @@ useEffect(() => {
              </View>
              {keyboardView=== false ?
               <>
-              <View >
-                <Text style={styles.bottomText}>Нет аккаунта? Зарегистрироваться</Text>
-              </View>
+              <TouchableOpacity onPress={() => navigation.navigate("Registration")}>
+                <Text style={styles.bottomText}  >
+                  Нет аккаунта? Зарегистрироваться</Text>
+              </TouchableOpacity>
               </>
                :
               null
@@ -123,7 +124,6 @@ useEffect(() => {
         </ImageBackground>
       </View>
       </TouchableWithoutFeedback>
-      </React.StrictMode>
     );
   }
   
